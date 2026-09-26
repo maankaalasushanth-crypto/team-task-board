@@ -7,30 +7,71 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="bg" aria-hidden="true"><span class="sheen sheen-a"></span><span class="sheen sheen-b"></span></div>
-  <header class="glass nav">
-    <div class="brand"><span class="logo">◈</span><div><h1>Team Task Board</h1><p>A collaborative Git practice project.</p></div></div>
-    <div class="badges"><span class="pill">Beginner Edition</span><span class="pill ghost">Git Workflow</span></div>
+  <div class="backdrop" aria-hidden="true"><span class="glow glow-a"></span><span class="glow glow-b"></span><span class="glow glow-c"></span><span class="grain"></span></div>
+  <header class="hero">
+    <p class="eyebrow">◈ Team Task Board</p>
+    <h1 class="display">Liquid<br />Tasks</h1>
+    <p class="sub">A collaborative Git practice project.</p>
+    <div class="dials">
+      <div class="dial"><span class="dial-num" id="countTotal">0</span><span class="dial-label">Total</span></div>
+      <div class="dial"><span class="dial-num" id="countActive">0</span><span class="dial-label">Active</span></div>
+      <div class="dial"><span class="dial-num" id="countDone">0</span><span class="dial-label">Done</span></div>
+    </div>
   </header>
   <main class="wrap">
-    <section id="task-form-section" class="glass panel form-panel">
-      <label class="field-label" for="taskInput">New task</label>
+    <section id="task-form-section" class="glass panel">
       <div class="form-row">
-        <input id="taskInput" type="text" placeholder="Enter a task — e.g. Review Member 2 PR" autocomplete="off" />
-        <button id="addBtn" type="button">Add Task</button>
+        <input id="taskInput" type="text" placeholder="Add a task…" autocomplete="off" />
+        <button id="addBtn" type="button" aria-label="Add task">＋</button>
       </div>
-      <div id="filter" class="filters" role="tablist" aria-label="Filter tasks">
+      <div id="filter" class="segment" role="tablist" aria-label="Filter tasks">
         <button data-filter="All" class="chip active" type="button">All</button>
         <button data-filter="Active" class="chip" type="button">Active</button>
         <button data-filter="Done" class="chip" type="button">Done</button>
       </div>
     </section>
-    <section id="board" class="glass panel board-panel">
-      <div class="board-head"><h2>Board</h2><span class="hint">Tap a task to advance status</span></div>
+    <section id="board" class="glass panel">
+      <div class="board-head"><h2>Board</h2><span class="hint">Tap › to advance status</span></div>
       <ul id="taskList"><li class="empty">Sample task — add your first task above.</li></ul>
     </section>
   </main>
   <footer class="foot"><p>Created by Sushanth, Hemanth &amp; Abhilash</p></footer>
   <script src="script.js"></script>
+  <script>
+  // Premium UX enhancer (additive): live counts, segmented control state, icon buttons, status orbs.
+  (function () {
+    var list = document.getElementById('taskList');
+    function readTasks() { try { return JSON.parse(localStorage.getItem('tasks') || '[]'); } catch (e) { return []; } }
+    function refreshCounts() {
+      var t = readTasks(), done = t.filter(function (x) { return x.status === 'done'; }).length;
+      var set = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
+      set('countTotal', t.length); set('countActive', t.length - done); set('countDone', done);
+    }
+    function decorate() {
+      if (!list) return;
+      var items = list.querySelectorAll('li');
+      items.forEach(function (li) {
+        if (li.classList.contains('empty')) return;
+        var txt = li.firstChild ? (li.firstChild.textContent || '') : '';
+        var m = txt.match(/\[(todo|in-progress|done)\]/);
+        li.classList.remove('st-todo', 'st-progress', 'st-done');
+        if (m) li.classList.add(m[1] === 'todo' ? 'st-todo' : m[1] === 'done' ? 'st-done' : 'st-progress');
+        var btns = li.querySelectorAll('button');
+        if (btns[0] && btns[0].textContent !== '›') { btns[0].textContent = '›'; btns[0].setAttribute('aria-label', 'Advance status'); btns[0].classList.add('act'); }
+        if (btns[1] && btns[1].textContent !== '×') { btns[1].textContent = '×'; btns[1].setAttribute('aria-label', 'Delete task'); btns[1].classList.add('del'); }
+      });
+      refreshCounts();
+    }
+    document.querySelectorAll('#filter .chip').forEach(function (c) {
+      c.addEventListener('click', function () {
+        document.querySelectorAll('#filter .chip').forEach(function (x) { x.classList.remove('active'); });
+        c.classList.add('active');
+      });
+    });
+    if (list && 'MutationObserver' in window) new MutationObserver(decorate).observe(list, { childList: true, subtree: true });
+    document.addEventListener('DOMContentLoaded', decorate);
+    decorate();
+  })();
+  </script>
 </body>
 </html>
