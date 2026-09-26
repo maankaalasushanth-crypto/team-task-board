@@ -1,4 +1,4 @@
-# Team Task Board — UI Edition
+# Team Task Board
 
 A collaborative Git practice project.
 
