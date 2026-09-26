@@ -1,1 +1,102 @@
-/* Team Task Board base styles */\nbody { font-family: Arial, sans-serif; margin: 0; padding: 0; }\n
+/* Team Task Board — UI Edition styles */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f6f8;
+  color: #333;
+}
+
+header {
+  background: #2c3e50;
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+header p {
+  margin: 6px 0 0;
+  color: #bdc3c7;
+}
+
+main {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.controls input,
+.controls select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+button {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2980b9;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.column {
+  background: #e9ecef;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.column h2 {
+  font-size: 16px;
+  margin: 0 0 12px;
+  color: #2c3e50;
+}
+
+.task-card {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.task-card h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.task-card p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #666;
+}
+
+.filter-bar {
+  margin-bottom: 16px;
+}
