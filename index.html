@@ -7,8 +7,29 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Team Task Board</h1>
-  <p>A collaborative Git practice project.</p>
+  <header>
+    <h1>Team Task Board</h1>
+    <p>A collaborative Git practice project.</p>
+  </header>
+  <main>
+    <section id="task-form-section">
+      <input id="taskInput" type="text" placeholder="Enter a task" />
+      <button id="addBtn">Add Task</button>
+    </section>
+    <section id="board">
+      <ul id="taskList">
+        <li>Sample task</li>
+      </ul>
+      <div id="filter">
+        <button>All</button>
+        <button>Active</button>
+        <button>Done</button>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>Team Task Board</p>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>
