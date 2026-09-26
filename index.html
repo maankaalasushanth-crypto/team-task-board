@@ -27,6 +27,7 @@
         <button id="addBtn" type="button" aria-label="Add task">＋</button>
       </div>
       <div id="filter" class="segment" role="tablist" aria-label="Filter tasks">
+        <span class="seg-indicator" aria-hidden="true"></span>
         <button data-filter="All" class="chip active" type="button">All</button>
         <button data-filter="Active" class="chip" type="button">Active</button>
         <button data-filter="Done" class="chip" type="button">Done</button>
@@ -68,8 +69,23 @@
       c.addEventListener('click', function () {
         document.querySelectorAll('#filter .chip').forEach(function (x) { x.classList.remove('active'); });
         c.classList.add('active');
+        moveSeg();
       });
     });
+    var seg = document.getElementById('filter');
+    function moveSeg() {
+      if (!seg) return;
+      var a = seg.querySelector('.chip.active') || seg.querySelector('.chip');
+      var bar = seg.querySelector('.seg-indicator');
+      if (!a || !bar) return;
+      requestAnimationFrame(function () {
+        bar.style.width = a.offsetWidth + 'px';
+        bar.style.transform = 'translateX(' + a.offsetLeft + 'px)';
+      });
+    }
+    window.addEventListener('resize', moveSeg);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveSeg);
+    setTimeout(moveSeg, 60);
     if (list && 'MutationObserver' in window) new MutationObserver(decorate).observe(list, { childList: true, subtree: true });
     document.addEventListener('DOMContentLoaded', decorate);
     decorate();

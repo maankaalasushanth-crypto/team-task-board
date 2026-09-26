@@ -65,13 +65,16 @@ body{
   transition:transform .3s var(--spring)}
 #addBtn:hover{transform:scale(1.08) rotate(90deg)}
 #addBtn:active{transform:scale(.94)}
-.segment{display:flex;gap:6px;margin-top:14px;padding:6px;border-radius:999px;width:fit-content;max-width:100%;
+.segment{display:flex;gap:6px;margin-top:14px;padding:6px;border-radius:999px;width:fit-content;max-width:100%;position:relative;
   background:rgba(8,47,73,.28);border:1px solid var(--stroke-soft);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.chip{padding:9px 22px;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--ink-dim);
-  font-size:14px;font-weight:600;cursor:pointer;transition:all .3s var(--ease)}
+.seg-indicator{position:absolute;top:6px;left:0;height:calc(100% - 12px);width:60px;border-radius:999px;
+  background:linear-gradient(150deg,#fff,var(--sky-200));
+  box-shadow:0 6px 18px rgba(8,47,73,.35),inset 0 1px 1px #fff;
+  transition:transform .42s var(--spring),width .42s var(--spring);will-change:transform,width}
+.chip{position:relative;z-index:1;padding:9px 22px;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--ink-dim);
+  font-size:14px;font-weight:600;cursor:pointer;transition:color .3s var(--ease)}
 .chip:hover{color:#fff}
-.chip.active{background:linear-gradient(150deg,#fff,var(--sky-200));color:var(--navy);
-  box-shadow:0 6px 18px rgba(8,47,73,.35),inset 0 1px 1px #fff}
+.chip.active{background:transparent;color:var(--navy);box-shadow:none}
 .board-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
 .board-head h2{margin:0;font-size:clamp(17px,2vw,20px);font-weight:750}
 .hint{color:var(--ink-dim);font-size:12.5px}
