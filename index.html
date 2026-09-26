@@ -3,33 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Team Task Board</title>
+  <title>Team Task Board — Liquid Glass</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Team Task Board</h1>
-    <p>A collaborative Git practice project.</p>
+  <div class="bg-orbs" aria-hidden="true"><span class="orb orb-a"></span><span class="orb orb-b"></span><span class="orb orb-c"></span></div>
+  <header class="glass nav">
+    <div class="brand"><span class="logo">◈</span><div><h1>Team Task Board</h1><p>A collaborative Git practice project.</p></div></div>
+    <div class="badges"><span class="pill">Beginner Edition</span><span class="pill ghost">Git Workflow</span></div>
   </header>
-  <main>
-    <section id="task-form-section">
-      <input id="taskInput" type="text" placeholder="Enter a task" />
-      <button id="addBtn">Add Task</button>
-    </section>
-    <section id="board">
-      <ul id="taskList">
-        <li>Sample task</li>
-      </ul>
-      <div id="filter">
-        <button data-filter="All">All</button>
-        <button data-filter="Active">Active</button>
-        <button data-filter="Done">Done</button>
+  <main class="wrap">
+    <section id="task-form-section" class="glass panel form-panel">
+      <label class="field-label" for="taskInput">New task</label>
+      <div class="form-row">
+        <input id="taskInput" type="text" placeholder="Enter a task — e.g. Review Member 2 PR" autocomplete="off" />
+        <button id="addBtn" type="button">Add Task</button>
+      </div>
+      <div id="filter" class="filters" role="tablist" aria-label="Filter tasks">
+        <button data-filter="All" class="chip active" type="button">All</button>
+        <button data-filter="Active" class="chip" type="button">Active</button>
+        <button data-filter="Done" class="chip" type="button">Done</button>
       </div>
     </section>
+    <section id="board" class="glass panel board-panel">
+      <div class="board-head"><h2>Board</h2><span class="hint">Tap a task to advance status</span></div>
+      <ul id="taskList"><li class="empty">Sample task — add your first task above.</li></ul>
+    </section>
   </main>
-  <footer>
-    <p>Team Task Board</p>
-  </footer>
+  <footer class="foot"><p>Team Task Board · CLONE → BRANCH → CODE → ADD → COMMIT → PULL → PUSH → PR → REVIEW → MERGE</p></footer>
   <script src="script.js"></script>
 </body>
 </html>
