@@ -1,5 +1,8 @@
 /* HAS TODO — sky-blue liquid glass, ultra premium */
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+button,input,a{ -webkit-tap-highlight-color:transparent }
+button:focus:not(:focus-visible),input:focus:not(:focus-visible){outline:none}
+button:focus-visible,input:focus-visible{outline:2px solid rgba(255,255,255,.8);outline-offset:2px}
 :root{
   --ink:#fff;--ink-dim:rgba(255,255,255,.75);--ink-faint:rgba(255,255,255,.55);
   --navy:#082f49;--sky-200:#bae6fd;--sky-300:#7dd3fc;--sky-500:#0ea5e9;
@@ -12,16 +15,16 @@ body{
   margin:0;min-height:100vh;color:var(--ink);
   font-family:Inter,-apple-system,"Segoe UI",Arial,sans-serif;
   background:
-    radial-gradient(1000px 620px at 12% 0%,#bae6fd 0%,transparent 55%),
-    radial-gradient(900px 620px at 90% 6%,#7dd3fc 0%,transparent 55%),
+    radial-gradient(1000px 620px at 12% 0%,#7dd3fc 0%,transparent 55%),
+    radial-gradient(900px 620px at 90% 6%,#38bdf6 0%,transparent 55%),
     radial-gradient(1000px 800px at 88% 72%,#0369a1 0%,transparent 58%),
     radial-gradient(900px 900px at 6% 88%,#0c4a6e 0%,transparent 60%),
-    linear-gradient(165deg,#7dd3fc 0%,#38bdf6 26%,#0284c7 55%,#0c4a6e 82%,#082f49 100%);
+    linear-gradient(165deg,#38bdf6 0%,#0284c7 30%,#0c4a6e 68%,#082f49 100%);
   background-attachment:fixed;-webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 .backdrop{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .glow{position:absolute;border-radius:50%;filter:blur(80px)}
-.glow-a{width:44vmax;height:44vmax;left:-12vmax;top:-14vmax;background:rgba(224,242,254,.5);animation:drift 16s ease-in-out infinite alternate}
+.glow-a{width:44vmax;height:44vmax;left:-12vmax;top:-14vmax;background:rgba(14,165,233,.5);animation:drift 16s ease-in-out infinite alternate}
 .glow-b{width:38vmax;height:38vmax;right:-10vmax;top:10vh;background:rgba(125,211,252,.55);animation:drift 19s ease-in-out infinite alternate-reverse}
 .glow-c{width:32vmax;height:32vmax;left:24vw;bottom:-18vmax;background:rgba(2,132,199,.55);animation:drift 22s ease-in-out infinite alternate}
 @keyframes drift{to{transform:translate3d(4vmax,3vmax,0) scale(1.07)}}
@@ -39,7 +42,7 @@ body{
   display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .eyebrow{margin:0 0 4px;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-dim)}
 .display{margin:0;font-size:clamp(40px,6vw,68px);line-height:1;font-weight:800;letter-spacing:-.02em;white-space:nowrap;
-  color:#fff;text-shadow:0 2px 26px rgba(8,47,73,.35);}
+  color:#fff;text-shadow:0 2px 30px rgba(8,47,73,.55),0 1px 3px rgba(8,47,73,.4);}
 .sub{margin:8px 0 0;color:var(--ink-dim);font-size:clamp(13px,1.8vw,15px)}
 .dials{display:flex;gap:12px;flex-wrap:wrap}
 .dial{width:92px;height:92px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
